@@ -77,7 +77,14 @@
                     latestColour.l = Math.floor(
                         Math.random() * 100
                     );
-                    console.log(latestColour);
+                }
+
+                if(latestColour.s < 10) {
+                    latestColour.s *= PHI * PHI;
+                }
+
+                if(latestColour.l < 15) {
+                    latestColour.l *= PHI * PHI;
                 }
 
 
