@@ -7,7 +7,17 @@
         <style>
             body { font-family: 'Fugaz One', cursive; }
             h2 { text-align: center }
-            canvas{ margin: 2px; border: 1px solid #222; }
+            canvas{
+                margin: 2px;
+                border: 1px solid #222;
+                cursor: pointer
+            }
+            input {
+                height: 40px;
+                border: 0;
+                background-color: #FFF;
+                cursor: pointer;
+            }
             .controls { text-align: center; margin-bottom: 24px; }
             #canvas { width: 987px; margin: 0 auto; }
         </style>
@@ -17,9 +27,9 @@
             <h2>Palette</h2>
         </div>
         <div class="controls">
-            <button id="remove-colour-pickers">-</button>
             <span id="colour-pickers"></span>
             <button id="add-colour-pickers">+</button>
+            <button id="remove-colour-pickers">-</button>
         </div>
         <div id="canvas"></div>
         
