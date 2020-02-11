@@ -240,9 +240,16 @@
             function applyFavicon(colours) {
                 let canvas = getGoldenRatioCanvas(colours);
                 let link = document.createElement('link');
+                link.id = "favicon";
                 link.type = 'image/x-icon';
                 link.rel = 'shortcut icon';
                 link.href = canvas.toDataURL("image/x-icon");
+                try {
+                    document.getElementsByTagName('head')[0]
+                        .removeChild(
+                            document.getElementById("favicon")
+                    );
+                } catch (err) { }
                 document.getElementsByTagName('head')[0].appendChild(link);
 
 
