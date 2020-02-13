@@ -1,3 +1,5 @@
+import { getCanvas } from './golden-ratio-canvas.js';
+
 const PHI = (1+ Math.sqrt(5))/2;
 const canvasHolder = document.getElementById("canvas");
 const addColours = document.getElementById("add-colour-pickers");
@@ -30,25 +32,25 @@ derivePalette.addEventListener("click", () => {
     let latestColour = hexToHSL(firstCol);
     for(let i = 1; i < colourPickers.childNodes.length; i++ ) {
 
-    if(latestColour.s == 0 || latestColour.l == 0){
-        latestColour.h = Math.floor(
-            Math.random() * 360
-        );
-        latestColour.s = Math.floor(
-            Math.random() * 100
-        );
-        latestColour.l = Math.floor(
-            Math.random() * 100
-        );
-    }
+        if(latestColour.s == 0 || latestColour.l == 0){
+            latestColour.h = Math.floor(
+                Math.random() * 360
+            );
+            latestColour.s = Math.floor(
+                Math.random() * 100
+            );
+            latestColour.l = Math.floor(
+                Math.random() * 100
+            );
+        }
 
-    if(latestColour.s < 10) {
-        latestColour.s *= PHI * PHI;
-    }
+        if(latestColour.s < 10) {
+            latestColour.s *= PHI * PHI;
+        }
 
-    if(latestColour.l < 15) {
-        latestColour.l *= PHI * PHI;
-    }
+        if(latestColour.l < 15) {
+            latestColour.l *= PHI * PHI;
+        }
 
 
         let n = Math.floor(Math.random() * 3);
@@ -100,7 +102,7 @@ function applyColours(){
 
     canvasHolder.innerHTML = "";
     colourPerms.forEach(colourList => {
-        let canvas = getGoldenRatioCanvas(colourList);
+        let canvas = getCanvas(colourList);
         canvas.addEventListener("click", () => {
             reorderColours(colourList);
         });
@@ -121,48 +123,6 @@ function reorderColours(colourList) {
     applyColours();
 }
 
-function getGoldenRatioCanvas(colours) {
-
-    let startHeight = 200;
-    let startWidth = 200;
-    let height = startHeight;
-    let width = startWidth;
-    let canvasWidth = width + (width / PHI);
-
-    let canvas = document.createElement('canvas');
-    canvas.width = canvasWidth;
-    canvas.height = height;
-    let context = canvas.getContext('2d');
-    let x = 0;
-    let y = 0;
-
-    colours.forEach((colour, n) => {
-        context.fillStyle = colour;
-        context.fillRect(x, y, width, height);
-        let quad = n % 4;
-        if(quad == 0) {
-            x += width;
-            width = width / PHI;
-            height = width
-        } else if (quad == 1){
-            x += width - width / PHI;
-            width = width / PHI;
-            y += height; 
-            height = width;
-        } else if (quad == 2) {
-            height = height / PHI;
-            y += height / PHI; 
-            x -= width / PHI;
-            width = height;
-        } else if (quad == 3) {
-            width = width / PHI;
-            y -= height / PHI; 
-            height = height / PHI;
-        }
-    });
-    
-    return canvas;
-}
 
 function findEveryPermutation(list) {
     let result = [];
@@ -196,7 +156,7 @@ function getColoursFromQueryString() {
 }
 
 function applyFavicon(colours) {
-    let canvas = getGoldenRatioCanvas(colours);
+    let canvas = getCanvas(colours);
     let link = document.createElement('link');
     link.id = "favicon";
     link.type = 'image/x-icon';
