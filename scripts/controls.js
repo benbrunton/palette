@@ -1,4 +1,3 @@
-
 export function addPicker(parent, onChange) {
     const input = document.createElement("input");
     input.type = "color";

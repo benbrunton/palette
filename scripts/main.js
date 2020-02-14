@@ -1,5 +1,5 @@
 import { getCanvas } from './golden-ratio-canvas.js';
-import { hexToHSL, HSLToHex } from './colours.js';
+import { hexToHSL, HSLToHex, generateColourList } from './colours.js';
 import { addPicker, getColoursFromPickers } from './controls.js';
 
 const canvasHolder = document.getElementById("canvas");

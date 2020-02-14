@@ -1,6 +1,9 @@
+const PHI = (1+ Math.sqrt(5))/2;
+const DEFAULT_COLOUR = "#FFFFFF";
+
 export function generateColourList(count) {
     let colourList = [];
-    let latestColour = hexToHSL("#FFFFFF");
+    let latestColour = hexToHSL(DEFAULT_COLOUR);
     for(let i = 0; i < count; i++ ) {
 
         if(latestColour.s == 0 || latestColour.l == 0){
