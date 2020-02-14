@@ -7,6 +7,4 @@ a colour palette.
 
 Might add some other features later.
 
-All code in a single index.html file because that's cool.
-
 [Live demo](https://palette.soydos.com)
