@@ -16,4 +16,12 @@ export function getColoursFromPickers(parentNode) {
     });
 }
 
+export function getColoursFromQueryString(cols) {
+    let urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.has("col")){
+        cols = urlParams.get("col").split(",");
+    }
+    return cols;
+}
+
 

@@ -1,6 +1,35 @@
 const PHI = (1+ Math.sqrt(5))/2;
 
-export function getCanvas(colours) {
+export function updateCanvases(parentNode, colours, onClick) {
+    parentNode.innerHTML = "";
+    colours.forEach(colourList => {
+        let canvas = getCanvas(colourList);
+        canvas.addEventListener("click", () => {
+            onClick(colourList);
+        });
+        parentNode.appendChild(canvas);
+    });
+}
+
+export function applyFavicon(colours) {
+    let canvas = getCanvas(colours);
+    let link = document.createElement('link');
+    link.id = "favicon";
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon';
+    link.href = canvas.toDataURL("image/x-icon");
+    try {
+        document.getElementsByTagName('head')[0]
+            .removeChild(
+                document.getElementById("favicon")
+        );
+    } catch (err) { }
+    document.getElementsByTagName('head')[0].appendChild(link);
+
+
+}
+
+function getCanvas(colours) {
 
     let startHeight = 200;
     let startWidth = 200;
